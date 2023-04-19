@@ -12,5 +12,5 @@ class App extends React.Component {
     );
   }
 }
-
+// Hello Stranger!
 export default App;
