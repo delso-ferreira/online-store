@@ -19,5 +19,5 @@ class ShoppingCart extends React.Component {
     );
   }
 }
-
+// Hello Stranger!
 export default ShoppingCart;
