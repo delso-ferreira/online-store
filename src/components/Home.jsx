@@ -8,23 +8,22 @@ class Home extends React.Component {
     categoriesList: [],
   };
 
+  componentDidMount() {
+    this.handleCategories();
+  }
+
   handleCategories = async () => {
     const categories = await getCategories();
 
     this.setState({
-      categoriesList: categories
-    })
-  }
-
-  componentDidMount() {
-    this.handleCategories();
+      categoriesList: categories,
+    });
   };
-
 
   render() {
     const { productsList } = this.state;
     const empty = productsList.length === 0;
-    const { categoriesList } = this.state
+    const { categoriesList } = this.state;
     return (
       <div>
         <Link data-testid="shopping-cart-button" to="/shopping-cart">
@@ -36,13 +35,15 @@ class Home extends React.Component {
           </p>
         )}
         {categoriesList.map((categoria) => (
-          <div key={categoria.id}>          
+          <div key={ categoria.id }>
             <label data-testid="category" htmlFor="categories">
               {categoria.name}
             </label>
-            <input type='radio'
-              name='categories'
-              value={categoria.name} />
+            <input
+              type="radio"
+              name="categories"
+              value={ categoria.name }
+            />
           </div>
         ))}
 
