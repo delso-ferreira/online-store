@@ -1,19 +1,43 @@
 import React from 'react';
+import ProductCart from './ProductCart';
 
 class ShoppingCart extends React.Component {
   state = {
-    cartThings: [],
+    cartList: [],
+  };
+
+  componentDidMount() {
+    this.recoverLocalstorage();
+  }
+
+  recoverLocalstorage = () => {
+    const products = JSON.parse(localStorage.getItem('cartProducts'));
+
+    this.setState({
+      cartList: products,
+    });
   };
 
   render() {
-    const { cartThings } = this.state;
-    const empty = cartThings.length === 0;
+    const { cartList } = this.state;
+
     return (
       <div>
-        {empty && (
+        {!cartList || cartList.length === 0 ? (
           <p data-testid="shopping-cart-empty-message">
             Seu carrinho está vazio
           </p>
+        ) : (
+          cartList.map(({ title, image, price, qtd }, index) => (
+            <ProductCart
+              key={ index }
+              title={ title }
+              image={ image }
+              price={ price }
+              qtd={ qtd }
+              updateQtd={ this.recoverLocalstorage }
+            />
+          ))
         )}
       </div>
     );

@@ -26,13 +26,13 @@ class Categories extends React.Component {
       <div>
         { categoriesList.length > 0 && categoriesList.map((categoria) => (
           <div key={ categoria.id }>
-            <label data-testid="category" htmlFor="categories">
+            <label data-testid="category" htmlFor={ categoria.id }>
               {categoria.name}
             </label>
             <input
               type="radio"
               name="categories"
-              id="categories"
+              id={ categoria.id }
               onClick={ onClick }
               value={ categoria.name }
             />
