@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { getProductsFromCategoryAndQuery } from '../services/api';
 import Categories from './Categories';
+import Product from './Product';
 
 class Home extends React.Component {
   state = {
@@ -37,9 +38,9 @@ class Home extends React.Component {
 
   showCheckedList = async (event) => {
     const { target } = event;
-    const { value } = target;
-    const productById = await getProductsFromCategoryAndQuery(value);
-    console.log('chamou a função');
+    const { id } = target;
+    const productById = await getProductsFromCategoryAndQuery(id);
+    // console.log(value);
     this.setState({
       productsList: productById.results,
       productFind: true,
@@ -47,20 +48,10 @@ class Home extends React.Component {
   };
 
   render() {
-    console.log(global.fetch);
     const { productsList, search, productFind } = this.state;
     const empty = productsList.length === 0;
     return (
       <div>
-        <Link data-testid="shopping-cart-button" to="/shopping-cart">
-          Carrinho de compras
-        </Link>
-        {empty && (
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-        )}
-
         <input
           data-testid="query-input"
           type="text"
@@ -76,18 +67,25 @@ class Home extends React.Component {
         >
           Buscar
         </button>
+        <Link data-testid="shopping-cart-button" to="/shopping-cart">
+          Carrinho de compras
+        </Link>
+        {empty && (
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+        )}
         <Categories onClick={ this.showCheckedList } />
         {productFind
           ? (productsList.map(({ price, thumbnail, title, id }) => (
 
-            <>
-              <div key={ id } />
-              <div data-testid="product">
-                <h1>{title}</h1>
-                <img src={ thumbnail } alt="thumbnail" />
-                <h2>{price}</h2>
-              </div>
-            </>
+            <Product
+              key={ id }
+              id={ id }
+              title={ title }
+              image={ thumbnail }
+              price={ price }
+            />
 
           )))
           : (<p>Nenhum produto foi encontrado</p>) }
