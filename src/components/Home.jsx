@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery, getProductsBySearch } from '../services/api';
 import Categories from './Categories';
 import Product from './Product';
 
@@ -13,7 +13,7 @@ class Home extends React.Component {
 
   querySearch = async () => {
     const { search } = this.state;
-    const getSearch = await getProductsFromCategoryAndQuery(search);
+    const getSearch = await getProductsBySearch(search);
 
     if (getSearch) {
       this.setState({
@@ -40,7 +40,6 @@ class Home extends React.Component {
     const { target } = event;
     const { id } = target;
     const productById = await getProductsFromCategoryAndQuery(id);
-    // console.log(value);
     this.setState({
       productsList: productById.results,
       productFind: true,
@@ -52,46 +51,55 @@ class Home extends React.Component {
     const empty = productsList.length === 0;
     return (
       <div>
-        <input
-          data-testid="query-input"
-          type="text"
-          value={ search }
-          name="search"
-          onChange={ this.inputChange }
-        />
+        <div className="search-container">
+          <input
+            data-testid="query-input"
+            type="text"
+            value={ search }
+            name="search"
+            onChange={ this.inputChange }
+          />
 
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.querySearch }
-        >
-          Buscar
-        </button>
-        <Link data-testid="shopping-cart-button" to="/shopping-cart">
-          Carrinho de compras
-        </Link>
-        {empty && (
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-        )}
-        <Categories onClick={ this.showCheckedList } />
-        {productFind
-          ? (productsList.map(({ price, thumbnail, title, id }) => (
+          <button
+            className="query-button"
+            data-testid="query-button"
+            type="button"
+            onClick={ this.querySearch }
+          >
+            Buscar
+          </button>
 
-            <Product
-              key={ id }
-              id={ id }
-              title={ title }
-              image={ thumbnail }
-              price={ price }
-            />
-
-          )))
-          : (<p>Nenhum produto foi encontrado</p>) }
-
+          <Link data-testid="shopping-cart-button" to="/shopping-cart">
+            Carrinho de compras
+          </Link>
+        </div>
+        <div className="container-categories-message">
+          <div className="categories-container">
+            <Categories onClick={ this.showCheckedList } />
+          </div>
+          <div className="container-allmessages">
+            {empty && (
+              <p
+                data-testid="home-initial-message"
+                className="initial-message"
+              >
+                Digite algum termo de pesquisa ou escolha uma categoria
+              </p>
+            )}
+            {productFind
+              ? (productsList.map(({ price, thumbnail, title, id }) => (
+                <Product
+                  key={ id }
+                  id={ id }
+                  title={ title }
+                  image={ thumbnail }
+                  price={ price }
+                />
+              )))
+              : (<p className="last-message">Nenhum produto foi encontrado</p>)}
+          </div>
+        </div>
       </div>
-
     );
   }
 }

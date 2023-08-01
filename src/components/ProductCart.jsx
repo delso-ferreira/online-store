@@ -45,45 +45,47 @@ class ProductCart extends Component {
     const { title, image, price, qtd, updateQtd } = this.props;
 
     return (
-      <div>
+      <div className="cart-container">
         <p data-testid="shopping-cart-product-name">{title}</p>
         <img src={ image } alt="imagem" />
         <p>{price}</p>
         <p data-testid="shopping-cart-product-quantity">{qtd}</p>
-        <button
-          type="button"
-          data-testid="product-increase-quantity"
-          onClick={ (event) => {
-            this.incrementQtd(event);
-            updateQtd();
-          } }
-          name={ title }
-        >
-          +
-        </button>
-        <button
-          type="button"
-          data-testid="product-decrease-quantity"
-          name={ title }
-          onClick={ (event) => {
-            this.decrementQtd(event);
-            updateQtd();
-          } }
-        >
-          -
-        </button>
-        <button
-          type="button"
-          data-testid="remove-product"
-          name={ title }
-          onClick={ (event) => {
-            this.removeProduct(event);
-            updateQtd();
-          } }
+        <div className="cart-container-btn">
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            onClick={ (event) => {
+              this.incrementQtd(event);
+              updateQtd();
+            } }
+            name={ title }
+          >
+            +
+          </button>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            name={ title }
+            onClick={ (event) => {
+              this.decrementQtd(event);
+              updateQtd();
+            } }
+          >
+            -
+          </button>
+          <button
+            type="button"
+            data-testid="remove-product"
+            name={ title }
+            onClick={ (event) => {
+              this.removeProduct(event);
+              updateQtd();
+            } }
 
-        >
-          remove
-        </button>
+          >
+            Excluir
+          </button>
+        </div>
       </div>
     );
   }

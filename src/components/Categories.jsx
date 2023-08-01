@@ -23,9 +23,9 @@ class Categories extends React.Component {
     const { categoriesList } = this.state;
     const { onClick } = this.props;
     return (
-      <div>
+      <div className="full-categories">
         { categoriesList.length > 0 && categoriesList.map((categoria) => (
-          <div key={ categoria.id }>
+          <div key={ categoria.id } className="categories-label">
             <label data-testid="category" htmlFor={ categoria.id }>
               {categoria.name}
             </label>

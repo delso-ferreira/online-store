@@ -26,15 +26,23 @@ class Product extends Component {
     const { qtd } = this.state;
 
     return (
-      <div data-testid="product">
+      <div data-testid="product" className="product-link-container">
         <Link
           to={ `/product/${id}` }
           data-testid="product-detail-link"
         >
-          <p data-testid="shopping-cart-product-name">{title}</p>
-          <img src={ image } alt="imagem" />
-          <p>{price}</p>
-          <p data-testid="shopping-cart-product-quantity">{qtd}</p>
+          <div className="product-description">
+            <p data-testid="shopping-cart-product-name">{title}</p>
+            <img src={ image } alt="imagem" />
+            <p>
+              Valor:
+              {price}
+            </p>
+            <p data-testid="shopping-cart-product-quantity">
+              Estoque:
+              {qtd}
+            </p>
+          </div>
         </Link>
         <button
           data-testid="product-add-to-cart"

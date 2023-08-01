@@ -19,7 +19,6 @@ class ProductCard extends Component {
   fetchPrdId = async () => {
     const { match } = this.props;
     const { id } = match.params;
-    // console.log(id);
     const product = await getProductById(id);
 
     this.setState({
@@ -45,22 +44,12 @@ class ProductCard extends Component {
   render() {
     const { title, price, image } = this.state;
     return (
-      <div>
-        <div>
+      <div className="details-container">
+        <div className="details-container-name">
           <h2 data-testid="product-detail-name">{title}</h2>
           <img src={ image } alt={ title } data-testid="product-detail-image" />
         </div>
-        <div>
-          <h3>Especificações técnicas</h3>
-          <ul>
-            <li>Especificação 1</li>
-            <li>Especificação 2</li>
-            <li>Especificação 3</li>
-            <li>Especificação 4</li>
-            <li>Especificação 5</li>
-            <li>Especificação 6</li>
-            <li>Especificação 7</li>
-          </ul>
+        <div className="details-container-esp">
           <p data-testid="product-detail-price">{price}</p>
           <button
             data-testid="product-detail-add-to-cart"
