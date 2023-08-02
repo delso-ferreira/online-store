@@ -38,7 +38,7 @@ Se você deseja contribuir com o projeto, fique à vontade! Basta seguir as dire
 
 Membros do Projeo:
 
-<a href="https://github.com/adrielle-b">Adriele Braga</a>
-<a href="https://github.com/delso-ferreira">Delso Ferreira</a>
-<a href="https://github.com/GelFerreira">Gel Ferreira</a>
+<a href="https://github.com/adrielle-b">Adriele Braga</a> /
+<a href="https://github.com/delso-ferreira">Delso Ferreira</a> /
+<a href="https://github.com/GelFerreira">Gel Ferreira</a> /
 
