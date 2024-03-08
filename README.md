@@ -1,5 +1,8 @@
 <h1>Online Store 🖱️ 🛍️</h1>
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/delso-ferreira/online-store/blob/main/LICENSE)
+
+
 Este projeto é um carrinho de compras implementado em React, JavaScript, com foco em testes unitários usando a metodologia TDD (Test-Driven Development). Foi desenvolvido em grupo, onde a organização e a comunicação entre todos os membros foram fundamentais para o sucesso do projeto.
 
 <h2>Funcionalidades</h2>
